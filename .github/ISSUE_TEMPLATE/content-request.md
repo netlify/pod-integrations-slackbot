@@ -1,19 +1,19 @@
 ---
-name: Content Suggestion
-about: Suggest an idea for the Developer Experience team
+name: Content request
+about: Suggest an idea for this team
 title: ''
 labels: ''
-assignees: sdras
+assignees: ''
 
 ---
 
 ## Summary
-- Project Name: What is this about?
-- Asked by: `@who?`
-- Target launch date: `no promises, but when would you ideally have this by`
+- Project Name:
+- Your name: `@who?`
+- Target launch date: `no promises, but when ideally would this launch`
 
 ## What is it?
-Are you asking for support for a technical post, a twitch stream, an example repo? What is it about?
+A short description of what this project will be about. Is it a blog post? Repo? Twitch livestream? Not sure?
 
 ## What problem does it solve?
 Describe briefly what problem exists and what problems this project will address.
