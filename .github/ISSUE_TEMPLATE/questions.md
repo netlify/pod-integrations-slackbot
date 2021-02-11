@@ -1,8 +1,8 @@
 ---
 name: Support questions
-about: Ask a question ofr discussion ion a DX Aasm Me Anything session
+about: Ask a question for discussion in a DX Ask Me Anything session
 title: "[TECH OR FRAMEWORK] : [QUESTION]"
 labels: ama-question
-projects: netlify/developer-experience/projects/5
+project: "netlify/developer-experience/projects/5"
 ---
 
