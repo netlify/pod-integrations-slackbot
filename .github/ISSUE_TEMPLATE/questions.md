@@ -1,8 +1,8 @@
 ---
 name: Support questions
 about: Ask a question ofr discussion ion a DX Aasm Me Anything session
-title: "[QUESTION]"
+title: "[TECH OR FRAMEWORK] : [QUESTION]"
 labels: ama-question
-projects: 5
+projects: Support-questions
 ---
 
