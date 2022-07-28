@@ -45,4 +45,5 @@ Let’s make sure our work is shared across the company. Please update the newsl
   };
 };
 
-export const handler = schedule('0 9 * * 3', handlerFn);
+// '0 9 * * 3' — run at 9am every Wednesday
+export const handler = schedule('* * * * *', handlerFn);
