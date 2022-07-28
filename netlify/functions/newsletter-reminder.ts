@@ -1,5 +1,6 @@
 import { Handler, schedule } from '@netlify/functions';
 import fetch from 'node-fetch';
+
 import { header, context, divider, markdown } from './utils/slack';
 
 const CAPYBARA_FACTS = [
