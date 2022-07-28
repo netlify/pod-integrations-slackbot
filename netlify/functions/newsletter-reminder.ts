@@ -8,6 +8,7 @@ const CAPYBARA_FACTS = [
   'Capybara Fact #3: Capybaras are BLAZING FAST. They can run up to 35mph!',
   'Capybara Fact #4: Dentists love ’em! Capybaras’ teeth never stop growing.',
   'Capybara Fact #5: A sleepy capybara can nap while swimming!',
+  'Capybara Fact #6: Capybaras don’t mind giving other animals a lift. They’re known as nature’s ottoman!',
 ];
 
 const handlerFn: Handler = async () => {
