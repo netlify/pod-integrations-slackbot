@@ -1,9 +1,7 @@
-# developer-experience
-Houses Developer Experience Sprint Planning, etc
+# Developer Experience
 
-## Useful links and resources
+This is a repo for DX-related things. Right now we use it for a few small utilities.
 
-- [Rolling DX backlog](https://github.com/netlify/developer-experience/projects/1) - Our current prioritised activities
-- [Events rubric](https://docs.google.com/document/d/19dTO_EtQJ6S3B0zUgMzM8VdMZGjZt8OS-KNuh-uXFf4/edit) - A guide to help assessing events sponsorship and participation.
-- [CFP and events tracking sheet](https://docs.google.com/spreadsheets/d/1gzNuhVoL01ioql-FJIEg9FstS36d-hVkZqQi8UxPAG0/edit#gid=0) - Keep track of CfP status and where Netlifyers are appearing at events
-- [Netlify Twitter Guidance](https://paper.dropbox.com/doc/Guidance-Netlify-Twitter--Aiy6602VWOze8B9T4PBiKYQaAg-Q5rCwYOxQp3YruT1xRvqM) - Including tools and tone and voice
+Most of what this org does happens in [our Notion docs](https://www.notion.so/netlify/Developer-Experience-DX-bcf6e65b79ae47d6bdbcb23e9ff20df0).
+
+You can also find us [on Slack in #crew-dev-experience](https://netlify.slack.com/archives/CCC1HDWQY).
