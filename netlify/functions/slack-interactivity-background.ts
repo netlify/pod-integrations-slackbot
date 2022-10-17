@@ -17,6 +17,7 @@ import {
   getUserByEmail,
   RequestEntry,
   convertEasyKeysToNotionData,
+  notionPageUrl,
 } from './utils/notion';
 import { blocks, properties, notionApi } from './utils/notion';
 import { markdown, slackApi } from './utils/slack';
@@ -40,7 +41,7 @@ async function shortcutProcessNudge(payload) {
       ),
       markdown(commands),
       markdown(
-        `Type the above into any Slack channel (not a thread!), follow the prompts, and your idea will be added to <https://www.notion.so/netlify/Projects-Tasks-b15a4092881a40afa819c2a4bf6bd513|our review queue>.`,
+        `Type the above into any Slack channel (not a thread!), follow the prompts, and your idea will be added to <${notionPageUrl}|our review queue>.`,
       ),
       markdown(`Thanks for helping us stay organized!`),
       { type: 'divider' },
@@ -119,8 +120,7 @@ async function createDXRequest(payload, callbackId) {
   }
 
   // build a permalink to the new request
-  const requestLink = new URL('https://www.notion.so');
-  requestLink.pathname = `/netlify/Projects-Tasks-b15a4092881a40afa819c2a4bf6bd513`;
+  const requestLink = new URL(notionPageUrl);
   requestLink.searchParams.set('p', notionRes.id.replace(/-/g, ''));
   requestLink.searchParams.set('pm', 's');
 

@@ -2,6 +2,9 @@ import type { RequestInit } from 'node-fetch';
 import { Client, collectPaginatedAPI } from '@notionhq/client';
 import fetch from 'node-fetch';
 
+export const notionPageUrl =
+  'https://www.notion.so/b15a4092881a40afa819c2a4bf6bd513';
+
 const props = {
   title: 'Name',
   author: 'Submitted By',

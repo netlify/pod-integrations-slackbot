@@ -1,7 +1,7 @@
 import type { Handler } from '@netlify/functions';
 import { schedule } from '@netlify/functions';
 
-import { notionApi } from './utils/notion';
+import { notionApi, notionPageUrl } from './utils/notion';
 import { slackApi } from './utils/slack';
 
 type NotionQuery = {
@@ -53,9 +53,7 @@ const reviewIssues: Handler = async () => {
       ],
     })) as NotionQuery
   ).results.map((issue) => {
-    console.log(issue.properties);
-    const requestLink = new URL('https://www.notion.so/');
-    requestLink.pathname = `/${process.env.NOTION_DB_ID}`;
+    const requestLink = new URL(notionPageUrl);
     requestLink.searchParams.set('p', issue.id.replace(/-/g, ''));
     requestLink.searchParams.set('pm', 's');
 
@@ -98,7 +96,7 @@ const reviewIssues: Handler = async () => {
           elements: [
             {
               type: 'mrkdwn',
-              text: `Review <https://www.notion.so/netlify/Projects-Tasks-b15a4092881a40afa819c2a4bf6bd513|all open requests> on Notion.`,
+              text: `Review <${notionPageUrl}|all open requests> on Notion.`,
             },
           ],
         },

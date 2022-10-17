@@ -1,6 +1,10 @@
 import type { Handler } from '@netlify/functions';
 import { parse } from 'querystring';
-import { notionApi, convertNotionDataToEasyKeys } from './utils/notion';
+import {
+  notionApi,
+  convertNotionDataToEasyKeys,
+  notionPageUrl,
+} from './utils/notion';
 import { slackApi } from './utils/slack';
 
 async function getRequestModalBlocks(commandText: string) {
@@ -22,7 +26,7 @@ async function getRequestModalBlocks(commandText: string) {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: 'Fill out this form to submit a new DXE request! Or, if you prefer, you can <https://google.com|create your request in Notion>. Requests are reviewed twice weekly. If your request is urgent, notify <@jason>.',
+        text: `Fill out this form to submit a new DXE request! Or, if you prefer, you can <${notionPageUrl}|create your request in Notion>. Requests are reviewed twice weekly. If your request is urgent, notify <@UPD6LDBFG>.`,
       },
     },
     {
