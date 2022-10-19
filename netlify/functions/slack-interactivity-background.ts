@@ -32,6 +32,8 @@ async function shortcutProcessNudge(payload) {
   const channel = payload.channel.id;
   const thread_ts = payload.message.thread_ts ?? payload.message.ts;
 
+  await slackApi('conversations.join', { channel });
+
   await slackApi('chat.postMessage', {
     channel,
     thread_ts,
