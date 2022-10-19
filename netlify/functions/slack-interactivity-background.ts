@@ -29,11 +29,12 @@ async function shortcutProcessNudge(payload) {
 - \`/dxidea\` — use this if your idea doesn’t have a specific deadline or project related to it
 `;
 
-  const ts = payload.message.thread_ts ?? payload.message.ts;
+  const channel = payload.channel.id;
+  const thread_ts = payload.message.thread_ts ?? payload.message.ts;
 
   await slackApi('chat.postMessage', {
-    channel: process.env.SLACK_CHANNEL_ID,
-    thread_ts: ts,
+    channel,
+    thread_ts,
     blocks: [
       markdown(`Hey <@${userId}>!`),
       markdown(
