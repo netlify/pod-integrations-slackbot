@@ -7,6 +7,7 @@ export enum NOTION_TASK_STATUS {
   IDEA = 'Idea',
   READY = 'Ready',
   IN_PROGRESS = 'In Progress',
+  IN_REVIEW = 'In Review',
   DONE = 'Done',
   WILL_NOT_DO = 'Will Not Do',
   ARCHIVED = 'Archived',
