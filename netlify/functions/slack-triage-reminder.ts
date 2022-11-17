@@ -1,7 +1,7 @@
 import type { Handler } from '@netlify/functions';
 import { schedule } from '@netlify/functions';
 
-import { notionApi, notionPageUrl } from './utils/notion';
+import { notionApi, notionPageUrl, NOTION_TASK_STATUS } from './utils/notion';
 import { slackApi } from './utils/slack';
 
 type NotionQuery = {
@@ -40,7 +40,7 @@ const reviewIssues: Handler = async () => {
           {
             property: 'Status',
             status: {
-              does_not_equal: 'Idea',
+              equals: NOTION_TASK_STATUS.NEEDS_TRIAGE,
             },
           },
         ],

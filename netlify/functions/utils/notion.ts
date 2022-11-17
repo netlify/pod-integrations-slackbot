@@ -2,6 +2,16 @@ import type { RequestInit } from 'node-fetch';
 import { Client, collectPaginatedAPI } from '@notionhq/client';
 import fetch from 'node-fetch';
 
+export enum NOTION_TASK_STATUS {
+  NEEDS_TRIAGE = 'Needs Triage',
+  IDEA = 'Idea',
+  READY = 'Ready',
+  IN_PROGRESS = 'In Progress',
+  DONE = 'Done',
+  WILL_NOT_DO = 'Will Not Do',
+  ARCHIVED = 'Archived',
+}
+
 export const notionPageUrl =
   'https://www.notion.so/b15a4092881a40afa819c2a4bf6bd513';
 

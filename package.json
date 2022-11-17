@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "prettier": "npx prettier --write ."
+  },
   "dependencies": {
     "@netlify/functions": "^1.0.0",
     "@notionhq/client": "^2.2.1",

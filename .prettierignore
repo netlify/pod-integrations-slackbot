@@ -1,0 +1,5 @@
+# Ignore artifacts:
+.github
+.netlify
+node_modules
+README.md
