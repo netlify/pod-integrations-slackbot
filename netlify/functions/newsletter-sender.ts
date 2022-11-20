@@ -163,6 +163,10 @@ export const handler: Handler = async (request) => {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
     },
-    body: JSON.stringify(items, null, 2),
+    body: JSON.stringify(
+      { status: 'ok', message: 'see the README for details on sending email' },
+      null,
+      2,
+    ),
   };
 };
