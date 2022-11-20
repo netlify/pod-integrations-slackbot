@@ -78,7 +78,7 @@ Netlify Slack.
 The function requires a `POST`, so you can either send via cURL in the command line (see snippet) or set up Postman or something.
 
 ```shell
-curl --location --request POST 'http://developer-experience.netlify.app/.netlify/functions/newsletter-sender' \
+curl --location --request POST 'https://developer-experience.netlify.app/.netlify/functions/newsletter-sender' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "issue": "08",
