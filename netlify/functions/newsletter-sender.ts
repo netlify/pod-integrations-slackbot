@@ -120,7 +120,7 @@ ${formattedItems.join('\n')}
 `;
 }
 
-async function sendEmail({ subject, lede, items, to, from }) {
+async function sendEmail({ subject, lede, items, to, from, context }) {
   const itemsByTeam = teams
     .map((team) => formatEmailItemsByTeam(team, items))
     .flat();
@@ -131,6 +131,7 @@ async function sendEmail({ subject, lede, items, to, from }) {
     subject,
     lede: lede.replace(/(\r\n|\n|\r)/gm, '</p><p>'),
     html: itemsByTeam.join(''),
+    context,
   });
 }
 
@@ -147,7 +148,15 @@ export const handler: Handler = async (request) => {
   const items = await loadNewsletterData({ issue });
 
   sendSlackMessage({ lede, items, channel });
-  sendEmail({ subject, lede, items, to, from });
+  sendEmail({
+    subject,
+    lede,
+    items,
+    to,
+    from,
+    context:
+      'If you have questions, please hit us up in <a href="https://netlify.slack.com/archives/CCC1HDWQY">#crew-all-dx</a>!',
+  });
 
   return {
     statusCode: 200,
