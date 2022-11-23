@@ -113,3 +113,17 @@ The flow I’ve used in the past is:
 5. Delete all the meta details so it's just the original message
 
 This is a bit of a pain, but it doesn't take too long and works fine.
+
+## Managing the Slack App
+
+The Slack app is located at https://api.slack.com/apps/A030QG4QGG5.
+
+Managing the commands themselves happens in the "Slash Commands" section.
+
+The modal configuration and process nudge shortcut management happens in "Interactivity & Shortcuts".
+
+### Local dev tips
+
+- Use `ntl dev --live` and use the live URL as the slash command / interactivity Request URL for local testing
+- Slack commands have to be finished within 3 or 4 seconds, so using background functions will avoid flakiness
+
