@@ -85,7 +85,7 @@ async function sendSlackMessage({ lede, items, channel }) {
     .map((team) => formatSlackItemsByTeam(team, items))
     .flat();
 
-  await slackApi('chat.postMessage', {
+  const res = await slackApi('chat.postMessage', {
     channel,
     blocks: [
       markdown(lede),
@@ -96,6 +96,15 @@ async function sendSlackMessage({ lede, items, channel }) {
       ),
     ],
   });
+
+  console.log(
+    '--------------------------------- BEGIN SLACK ----------------------------------',
+  );
+  const { message, ...details } = res;
+  console.log(JSON.stringify(details, null, 2));
+  console.log(
+    '---------------------------------- END SLACK -----------------------------------',
+  );
 }
 
 function formatEmailItemsByTeam(team, items) {
@@ -125,14 +134,30 @@ async function sendEmail({ subject, lede, items, to, from, context }) {
     .map((team) => formatEmailItemsByTeam(team, items))
     .flat();
 
-  await sendSendgridEmail({
-    to,
-    from,
-    subject,
-    lede: lede.replace(/(\r\n|\n|\r)/gm, '</p><p>'),
-    html: itemsByTeam.join(''),
-    context,
-  });
+  console.log(
+    '-------------------------------- BEGIN SENDGRID --------------------------------',
+  );
+
+  try {
+    await sendSendgridEmail({
+      to,
+      from,
+      subject,
+      lede: lede.replace(/(\r\n|\n|\r)/gm, '</p><p>'),
+      html: itemsByTeam.join(''),
+      context,
+    });
+  } catch (error) {
+    console.error(error);
+
+    if (error.response) {
+      console.error(error.response.body);
+    }
+  }
+
+  console.log(
+    '--------------------------------- END SENDGRID ---------------------------------',
+  );
 }
 
 export const handler: Handler = async (request) => {
@@ -147,8 +172,8 @@ export const handler: Handler = async (request) => {
 
   const items = await loadNewsletterData({ issue });
 
-  sendSlackMessage({ lede, items, channel });
-  sendEmail({
+  await sendSlackMessage({ lede, items, channel });
+  await sendEmail({
     subject,
     lede,
     items,
