@@ -83,7 +83,6 @@ curl --location --request POST 'https://developer-experience.netlify.app/.netlif
 --data-raw '{
     "issue": "08",
     "to": "jason.lengstorf@netlify.com",
-    "subject": "Serverless DX Newsletter",
     "lede": "Hey there capybuddies! \n\nThis is the text that shows up before the newsletter items."
 }'
 ```
