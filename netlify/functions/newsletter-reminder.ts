@@ -16,7 +16,7 @@ const handlerFn: Handler = async () => {
   const random = Math.floor(Math.random() * CAPYBARA_FACTS.length);
   const msgHeader = ':wave: Greeting capybuddies! It’s that time again!';
   const msgLink =
-    'https://www.notion.so/netlify/cdd79d3f92d146b7bfa12a170feb9ca7?v=33433890fa6c43fabbf2273677f688c8';
+    'https://www.notion.so/netlify/cdd79d3f92d146b7bfa12a170feb9ca7?v=b6c1e67cd84d4df4af7e8b7d8b12ba25';
   const msgBody = `*Please update the DX Newsletter by EOD Friday.*
 
 Let’s make sure our work is shared across the company. Please update the newsletter Notion for this week!`;

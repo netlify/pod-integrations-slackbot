@@ -17,7 +17,7 @@ interface TeamData {
   icon: string;
 }
 
-async function loadNewsletterData({ issue = '08' }): Promise<NewsletterItem[]> {
+async function loadNewsletterData({ issue = '09' }): Promise<NewsletterItem[]> {
   const res = await notionApi(
     `/databases/${process.env.NOTION_NEWSLETTER_DB_ID}/query`,
     {
@@ -163,7 +163,7 @@ async function sendEmail({ subject, lede, items, to, from, context }) {
 export const handler: Handler = async (request) => {
   const {
     channel = process.env.SLACK_CHANNEL_ID,
-    issue = '07',
+    issue = '09',
     subject = `DX Newsletter | ${new Date().toISOString().split('T')[0]}`,
     lede = 'Hey there capybuddies! Here’s what the DX team has been up to lately.',
     to = 'jason.lengstorf@netlify.com',

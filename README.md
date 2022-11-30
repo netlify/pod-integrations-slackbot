@@ -73,7 +73,18 @@ http://localhost:8888/api/slack/triage-reminder
 Test the output of the Appybara in [#test-dx-appybara](https://app.slack.com/client/T02UKDKNA/C04C21ZNFEC) in the
 Netlify Slack.
 
-## How to send the DX Newsletter
+## The DX Newsletter
+
+### Updating Notion
+
+After a Newsletter has been sent, it's useful to create a new Newsletter issue in Notion [here](https://www.notion.so/netlify/cdd79d3f92d146b7bfa12a170feb9ca7?v=b6c1e67cd84d4df4af7e8b7d8b12ba25) and update the following in `newsletter-reminder` to the latest Newsletter issue view. This will ensure the reminder is accurate when it is sent.
+
+```javascript
+const msgLink =
+  'https://www.notion.so/netlify/cdd79d3f92d146b7bfa12a170feb9ca7?v=b6c1e67cd84d4df4af7e8b7d8b12ba25';
+```
+
+### How to send the DX Newsletter
 
 The function requires a `POST`, so you can either send via cURL in the command line (see snippet) or set up Postman or something.
 
@@ -81,7 +92,7 @@ The function requires a `POST`, so you can either send via cURL in the command l
 curl --location --request POST 'https://developer-experience.netlify.app/.netlify/functions/newsletter-sender' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "issue": "08",
+    "issue": "09",
     "to": "jason.lengstorf@netlify.com",
     "lede": "Hey there capybuddies! \n\nThis is the text that shows up before the newsletter items."
 }'
@@ -125,4 +136,3 @@ The modal configuration and process nudge shortcut management happens in "Intera
 
 - Use `ntl dev --live` and use the live URL as the slash command / interactivity Request URL for local testing
 - Slack commands have to be finished within 3 or 4 seconds, so using background functions will avoid flakiness
-
