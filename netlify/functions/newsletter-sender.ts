@@ -166,7 +166,7 @@ export const handler: Handler = async (request) => {
     issue = '09',
     subject = `DX Newsletter | ${new Date().toISOString().split('T')[0]}`,
     lede = 'Hey there capybuddies! Here’s what the DX team has been up to lately.',
-    to = 'jason.lengstorf@netlify.com',
+    to = 'developerexperience@netlify.com',
     from = 'noreply@ntl.fyi',
   } = JSON.parse(request.body || '{}');
 
