@@ -1,6 +1,6 @@
 ---
-name: Content request
-about: Suggest an idea for this team
+name: Integration request
+about: Suggest an integration for Netlify
 title: ''
 labels: ''
 assignees: ''
@@ -8,12 +8,11 @@ assignees: ''
 ---
 
 ## Summary
-- Project Name:
+- Integration Name:
 - Your name: `@who?`
-- Target launch date: `no promises, but when ideally would this launch`
 
 ## What is it?
-A short description of what this project will be about. Is it a blog post? Repo? Twitch livestream? Not sure?
+A short description of what this integration will do. Any third-party links, references, or examples?
 
 ## What problem does it solve?
 Describe briefly what problem exists and what problems this project will address.
