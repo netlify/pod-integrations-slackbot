@@ -15,7 +15,7 @@ import { parse } from 'querystring';
 
 import {
   getUserByEmail,
-  RequestEntry,
+  UpdateEntry,
   convertEasyKeysToNotionData,
   notionPageUrl,
 } from './utils/notion';
@@ -25,8 +25,7 @@ import { markdown, slackApi } from './utils/slack';
 async function shortcutProcessNudge(payload) {
   const userId = payload.message.user;
   const commands = `
-- \`/dxreq\` — use this if you have a prioritized project that has a deadline
-- \`/dxidea\` — use this if your idea doesn’t have a specific deadline or project related to it
+- \`/integrations-update\` — use this to make a project update 
 `;
 
   const channel = payload.channel.id;
@@ -40,23 +39,13 @@ async function shortcutProcessNudge(payload) {
     blocks: [
       markdown(`Hey <@${userId}>!`),
       markdown(
-        `To make sure we don’t lose track of things, we ask that everyone submits ideas using our slash commands:`,
+        `To make sure we don’t lose track of things, we ask that everyone submits updates using our slash command:`,
       ),
       markdown(commands),
       markdown(
-        `Type the above into any Slack channel (not a thread!), follow the prompts, and your idea will be added to <${notionPageUrl}|our review queue>.`,
+        `Type the above into any Slack channel (not a thread!), follow the prompts, and your update will be added to <${notionPageUrl}.`,
       ),
       markdown(`Thanks for helping us stay organized!`),
-      { type: 'divider' },
-      {
-        type: 'context',
-        elements: [
-          {
-            type: 'mrkdwn',
-            text: `*NOTE:* We only review items that are submitted using these slash commands. Messages in Slack are not tracked or reviewed.`,
-          },
-        ],
-      },
     ],
   });
 
@@ -66,21 +55,20 @@ async function shortcutProcessNudge(payload) {
   };
 }
 
-async function createDXRequest(payload, callbackId) {
+async function createUpdate(payload, callbackId) {
   const values = payload.view.state.values;
-  const type = callbackId === 'dx.submit-request' ? 'request' : 'idea';
+  const type = callbackId === 'update';
 
   // simplify the data from Slack a bit
   const data = {
     title: values.title_block.title.value,
     date: values.date_block?.date?.selected_date,
     description: values.description_block.description.value,
-    importance: values.importance_block?.importance?.selected_option,
   };
 
   // set the fields as Notion properties to populate the database entry
-  const props: RequestEntry = {
-    title: properties.title(data.title),
+  const props: UpdateEntry = {
+    project: properties.title(data.title),
   };
 
   // try to find the Notion user using the Slack user's email
@@ -94,14 +82,6 @@ async function createDXRequest(payload, callbackId) {
 
   if (data.date) {
     props.date = properties.date(data.date);
-  }
-
-  if (data.importance?.text?.text) {
-    props.importance = properties.select(data.importance.text.text);
-  }
-
-  if (!data.date || type === 'idea') {
-    props.status = properties.status('Idea');
   }
 
   // if a description was set, add it as the page content
@@ -163,14 +143,7 @@ export const handler: Handler = async (event) => {
   let response;
 
   switch (callbackId) {
-    case 'dx.process-nudge':
-      response = shortcutProcessNudge(payload);
-      break;
-
-    case 'dx.submit-request':
-    case 'dx.submit-idea':
-      response = createDXRequest(payload, callbackId);
-      break;
+    case 'integrations.update':
 
     default:
       response = {
