@@ -1,4 +1,0 @@
-contact_links:
-  - name: Support questions
-    about: Ask a question for discussion in a DX Ask Me Anything session
-    url: https://github.com/netlify/developer-experience/issues/new?labels=ama-question&template=questions.md&title=%5BTECHNOLOGY%20OR%20FRAMEWORK%5D:%20[QUESTION]+&projects=netlify%2Fdeveloper-experience%2F5
