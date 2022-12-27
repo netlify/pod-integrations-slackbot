@@ -1,46 +1,35 @@
 import type { RequestInit } from 'node-fetch';
 import { Client, collectPaginatedAPI } from '@notionhq/client';
 import fetch from 'node-fetch';
-
-export enum NOTION_TASK_STATUS {
-  NEEDS_TRIAGE = 'Needs Triage',
-  IDEA = 'Idea',
-  READY = 'Ready',
-  IN_PROGRESS = 'In Progress',
-  IN_REVIEW = 'In Review',
-  DONE = 'Done',
-  WILL_NOT_DO = 'Will Not Do',
-  ARCHIVED = 'Archived',
-}
+import { triggerAsyncId } from 'async_hooks';
+import { stringify } from 'querystring';
+import { url } from 'inspector';
 
 export const notionPageUrl =
-  'https://www.notion.so/b15a4092881a40afa819c2a4bf6bd513';
+  'https://www.notion.so/45db28296d1c4c949f2ce6611f83474e';
 
 const props = {
-  title: 'Name',
-  author: 'Submitted By',
-  date: 'Needed By',
-  importance: 'Importance',
-  status: 'Status',
+  project: 'Wha project?',
+  author: 'Who you?',
+  date: 'What day is it?',
+  repo: 'There a repo? Link here.'
 };
 
 export function convertNotionDataToEasyKeys(data) {
   return {
-    title: data[props.title],
+    project: data[props.project],
     author: data[props.author],
     date: data[props.date],
-    importance: data[props.importance],
-    status: data[props.status],
+    repo: data[props.repo],
   };
 }
 
 export function convertEasyKeysToNotionData(data) {
   return {
-    [props.title]: data.title,
+    [props.project]: data.title,
     [props.author]: data.author,
     [props.date]: data.date,
-    [props.importance]: data.importance,
-    [props.status]: data.status,
+    [props.repo]: data.repo,
   };
 }
 
@@ -67,8 +56,8 @@ export async function getUserByEmail(email) {
   return user;
 }
 
-type TitleProperty = {
-  title: [{ text: { content: string } }];
+type ProjectProperty = {
+  project: [{ text: { content: string } }];
 };
 
 type RichTextProperty = {
@@ -88,24 +77,15 @@ type PeopleProperty = {
   people: [{ id: string }];
 };
 
-type SelectProperty = {
-  select: { name: string };
+type RepoProperty = {
+  url: { repo?: string; };
 };
 
-type StatusProperty = {
-  status: {
-    id?: string;
-    name: string;
-    color?: string;
-  };
-};
-
-export type RequestEntry = {
-  title: TitleProperty;
+export type UpdateEntry = {
+  project: ProjectProperty;
   author?: PeopleProperty;
   date?: DateProperty;
-  importance?: SelectProperty;
-  status?: StatusProperty;
+  repo?: RepoProperty;
 };
 
 type ParagraphBlock = {
@@ -135,12 +115,12 @@ export function notionApi(endpoint: string, body?: object): Promise<any> {
 }
 
 export const properties = {
-  title(title): TitleProperty {
+  title(project): ProjectProperty {
     return {
-      title: [
+      project: [
         {
           text: {
-            content: title,
+            content: project,
           },
         },
       ],
@@ -163,18 +143,9 @@ export const properties = {
       },
     };
   },
-  select(optionName): SelectProperty {
+  url(repo): RepoProperty {
     return {
-      select: {
-        name: optionName,
-      },
-    };
-  },
-  status(optionName): StatusProperty {
-    return {
-      status: {
-        name: optionName,
-      },
+      url: repo,
     };
   },
 };
