@@ -63,9 +63,6 @@ To call a function, hit an endpoint in your browser, formatted like:
 http://localhost:8888/api/slack/triage-reminder
 ```
 
-Test the output of the Appybara in [#test-dx-appybara](https://app.slack.com/client/T02UKDKNA/C04C21ZNFEC) in the
-Netlify Slack.
-
 ## Managing the Slack App
 
 The Slack app is located at https://api.slack.com/apps/A030QG4QGG5.
